@@ -1,0 +1,33 @@
+{
+  "name": "mcservercreator",
+  "version": "1.0.0",
+  "description": "Minecraft Server Creator",
+  "main": "dist/index.js",
+  "bin": {
+    "mcsc": "entry.sh"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "build": "rm -fr dist && tsc --pretty"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Piarre/MCServerCreator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Piarre/MCServerCreator/issues"
+  },
+  "homepage": "https://github.com/Piarre/MCServerCreator#readme",
+  "dependencies": {
+    "enquirer": "^2.3.6",
+    "fs-extra": "^10.1.0",
+    "yargs": "^17.5.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@types/yargs": "^17.0.10"
+  }
+}

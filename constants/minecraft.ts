@@ -7,7 +7,7 @@ class Server {
   }
 }
 
-export const serverVersions = {
+export const versions = {
   "1.7.10": new Server("1.7.10", {
     vanilla:
       "https://launcher.mojang.com/v1/objects/952438ac4e01b4d115c5fc38f891710c4941df29/server.jar",
