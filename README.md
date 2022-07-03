@@ -1,5 +1,4 @@
 # MCServerCreator
-
 Minecraft Server Creator
 
 # Spigot compatibility
