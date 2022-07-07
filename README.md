@@ -1,5 +1,5 @@
 # MCServerCreator
-Minecraft Server Creator
+A Minecraft serverc creator
 
 # Spigot compatibility
 
@@ -51,3 +51,6 @@ Minecraft Server Creator
 - [ ] 1.8.1
 - [x] 1.8
 - [x] 1.7.10
+
+# 🔐 License 
+MIT

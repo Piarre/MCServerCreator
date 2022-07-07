@@ -6,21 +6,26 @@ import Utilities from "./serverUtilities.js";
 
 import { versions } from "./constants/minecraft";
 
+/**
+ * @author Piarre
+ * @version 1.0.0
+ * @description Main function for the tools.
+ */
 (async () => {
   const startArgs = yargs.options({
-    mcversion: {
+    version: {
       type: "string",
-      demandOption: false,
+      demandOption: true,
       alias: "v",
       description: "Minecraft server version's.",
     },
-    serverType: {
+    type: {
       type: "boolean",
       demandOption: false,
       alias: "s",
       description: "vanilla | spigot",
     },
-    deleteServer: {
+    delete: {
       type: "boolean",
       demandOption: false,
       alias: "d",
@@ -29,11 +34,10 @@ import { versions } from "./constants/minecraft";
     },
   }).argv;
 
-  const { mcversion, serverType, deleteServer } = startArgs;
+  const { version, type, sdelete } = startArgs;
 
-
-  // TODO: Create  a function to reset/delete the server.
-  // if (deleteServer) {
+  // TODO: Finish function to reset/delete the server.
+  // if (sdelete) {
   //   const inquirer = await require("inquirer");
 
   //   await inquirer
@@ -45,38 +49,25 @@ import { versions } from "./constants/minecraft";
   //         default: false,
   //       },
   //     ])
-  //     .then((resetConfirmation) => {
-  //       if (resetConfirmation) {
-  //         console.log("Server resetting...");
-  //         process.chdir("..");
-  //         fs.remove("./server");
-  //       } else {
-  //         console.log("\x1b[32mServer resetting canceled.");
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
   //   return;
   // }
 
-  if (!(mcversion in versions))
-    console.log("\x1b[31mInvalid Minecraft \x1b[31mversion.");
+  if (!(version in versions))
+    console.error("\x1b[31mInvalid Minecraft \x1b[31mversion.");
 
-  if (mcversion in versions && !serverType) {
+  if (version in versions && !type) {
     const serverUtils = new Utilities();
     await serverUtils.getServerTemplate(() => {
-      serverUtils.getJar(versions[mcversion].vanilla);
-      fs.writeFile("version.txt", mcversion);
+      serverUtils.getJar(versions[version].vanilla);
     });
-  } else if (mcversion in versions && serverType) {
-    if (versions[mcversion].spigot == null) {
+  } else if (version in versions && type) {
+    if (versions[version].spigot == null) {
       console.log(
-        `\x1b[31m${mcversion} \x1b[4mSpigot version\x1b[0m is not supported yet.`
+        `\x1b[31m${version} \x1b[4mSpigot version\x1b[0m is not supported yet.`
       );
     } else {
-      console.log(versions[mcversion].spigot);
-      getJar(versions[mcversion].spigot);
+      console.log(versions[version].spigot);
+      getJar(versions[version].spigot);
     }
   }
 })();
