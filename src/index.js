@@ -1,9 +1,15 @@
 // @ts-nocheck
+
+// Modules
 import yargs from "yargs";
-import fs from "fs-extra";
+import path from "path";
+import fs from "fs";
 
-import Utilities from "./serverUtilities.js";
+// Classes
+import Utilities from "./utils/serverUtilities.js";
+import returnMessageHandler from './utils/returnMessageHandler';
 
+// Constants
 import { versions } from "./constants/minecraft";
 
 /**
@@ -13,61 +19,90 @@ import { versions } from "./constants/minecraft";
  */
 (async () => {
   const startArgs = yargs.options({
-    version: {
+    mcversion: {
       type: "string",
-      demandOption: true,
+      demandOption: false,
       alias: "v",
       description: "Minecraft server version's.",
     },
-    type: {
+    spigot: {
       type: "boolean",
       demandOption: false,
       alias: "s",
-      description: "vanilla | spigot",
+      description: "If you want to use spigot server.",
     },
-    delete: {
+    sdelete: {
       type: "boolean",
       demandOption: false,
       alias: "d",
-      default: false,
       description: "Delete the server.",
+    },
+    folderName: {
+      type: "string",
+      demandOption: false,
+      alias: "f",
+      description: "The name of the server folder.",
+      default: "server",
     },
   }).argv;
 
-  const { version, type, sdelete } = startArgs;
+  const { mcversion, spigot, sdelete, folderName } = startArgs;
 
-  // TODO: Finish function to reset/delete the server.
-  // if (sdelete) {
-  //   const inquirer = await require("inquirer");
+  const msgHandler = new returnMessageHandler();
 
-  //   await inquirer
-  //     .prompt([
-  //       {
-  //         type: "confirm",
-  //         name: "resetConfirmation",
-  //         message: "\x1b[31mAre you sure you want to reset the server ?",
-  //         default: false,
-  //       },
-  //     ])
+  if (sdelete) {
+    const inquirer = await require("inquirer");
+
+    await inquirer
+      .prompt([
+        {
+          type: "confirm",
+          name: "deleteConfirm",
+          message: "\x1b[31mAre you sure you want to reset the server ?",
+          default: false,
+        },
+      ])
+      .then((answer) => {
+        if (answer.deleteConfirm) {
+          msgHandler.Message("Server deleting...", "WARNING", "RED");
+          fs.readdir(process.cwd(), (err, files) => {
+            if (err) throw err;
+
+            for (const file of files) {
+              fs.unlink(path.join(process.cwd(), file), (err) => {
+                if (err) throw err;
+              });
+            }
+          });
+          msgHandler.Message("Server deleted.", "SUCCESS", "RED");
+        }
+      });
+
+    return;
+  }
+
+  console.log(msgHandler.Message("Server creating...", "WARNING", "RED"))
+
+  // if (false) {
   //   return;
   // }
 
-  if (!(version in versions))
-    console.error("\x1b[31mInvalid Minecraft \x1b[31mversion.");
+  if (!(mcversion in versions))
+    return msgHandler.Message("Minecraft version not found.", "ERROR", "RED");
 
-  if (version in versions && !type) {
+  if (mcversion in versions && !spigot) {
     const serverUtils = new Utilities();
-    await serverUtils.getServerTemplate(() => {
-      serverUtils.getJar(versions[version].vanilla);
+    await serverUtils.createServer(folderName, () => {
+      serverUtils.getJar(versions[mcversion].vanilla);
     });
-  } else if (version in versions && type) {
-    if (versions[version].spigot == null) {
-      console.log(
-        `\x1b[31m${version} \x1b[4mSpigot version\x1b[0m is not supported yet.`
-      );
+  } else if (mcversion in versions && spigot) {
+    if (versions[mcversion].spigot == null) {
+      msgHandler.Message(`${mcversion} Spigot version is not supported yet.`, "ERROR", "RED");
     } else {
-      console.log(versions[version].spigot);
-      getJar(versions[version].spigot);
+      const serverUtils = new Utilities();
+      await serverUtils.createServer(folderName, () => {
+        serverUtils.getJar(versions[mcversion].spigot);
+      });
     }
   }
 })();
