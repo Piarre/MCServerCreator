@@ -4,7 +4,7 @@
   "description": "Minecraft Server Creator",
   "main": "dist/index.js",
   "bin": {
-    "mcsc": "entry.sh"
+    "mcsc": "bin/entry.sh"
   },
   "scripts": {
     "start": "node esm.js"

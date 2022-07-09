@@ -2,49 +2,21 @@
 
 // Modules
 import yargs from "yargs";
-import path from "path";
-import fs from "fs";
 
 // Classes
 import Utilities from "./utils/serverUtilities.js";
-import returnMessageHandler from './utils/returnMessageHandler';
+import returnMessageHandler from "./utils/returnMessageHandler";
 
 // Constants
 import { versions } from "./constants/minecraft";
-
+import { yargsOptions } from "./constants/yArgs";
 /**
  * @author Piarre
  * @version 1.0.0
  * @description Main function for the tools.
  */
 (async () => {
-  const startArgs = yargs.options({
-    mcversion: {
-      type: "string",
-      demandOption: false,
-      alias: "v",
-      description: "Minecraft server version's.",
-    },
-    spigot: {
-      type: "boolean",
-      demandOption: false,
-      alias: "s",
-      description: "If you want to use spigot server.",
-    },
-    sdelete: {
-      type: "boolean",
-      demandOption: false,
-      alias: "d",
-      description: "Delete the server.",
-    },
-    folderName: {
-      type: "string",
-      demandOption: false,
-      alias: "f",
-      description: "The name of the server folder.",
-      default: "server",
-    },
-  }).argv;
+  const startArgs = yargs.options(yargsOptions).argv;
 
   const { mcversion, spigot, sdelete, folderName } = startArgs;
 
@@ -64,43 +36,40 @@ import { versions } from "./constants/minecraft";
       ])
       .then((answer) => {
         if (answer.deleteConfirm) {
-          msgHandler.Message("Server deleting...", "WARNING", "RED");
-          fs.readdir(process.cwd(), (err, files) => {
-            if (err) throw err;
-
-            for (const file of files) {
-              fs.unlink(path.join(process.cwd(), file), (err) => {
-                if (err) throw err;
-              });
-            }
-          });
-          msgHandler.Message("Server deleted.", "SUCCESS", "RED");
+          new Utilities().deleteServer();
         }
       });
 
     return;
   }
 
-  console.log(msgHandler.Message("Server creating...", "WARNING", "RED"))
+  if (!mcversion) {
+    yargs.options(yargsOptions).demandCommand().argv;
 
-  // if (false) {
-  //   return;
-  // }
+    return console.log(msgHandler.Message(
+      "Please specify a Minecraft version.",
+      "ERROR"
+    ));
+  }
+
 
   if (!(mcversion in versions))
-    return msgHandler.Message("Minecraft version not found.", "ERROR", "RED");
+    return console.log(msgHandler.Message("Minecraft version not found.", "ERROR"));
 
   if (mcversion in versions && !spigot) {
     const serverUtils = new Utilities();
-    await serverUtils.createServer(folderName, () => {
+    await serverUtils.createServer(folderName, mcversion, "Vanilla", () => {
       serverUtils.getJar(versions[mcversion].vanilla);
     });
   } else if (mcversion in versions && spigot) {
     if (versions[mcversion].spigot == null) {
-      msgHandler.Message(`${mcversion} Spigot version is not supported yet.`, "ERROR", "RED");
+      console.log(msgHandler.Message(
+        `${mcversion} Spigot version is not supported yet.`,
+        "ERROR"
+      ));
     } else {
       const serverUtils = new Utilities();
-      await serverUtils.createServer(folderName, () => {
+      await serverUtils.createServer(folderName, mcversion, "Spigot", () => {
         serverUtils.getJar(versions[mcversion].spigot);
       });
     }
