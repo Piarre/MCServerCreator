@@ -1,6 +1,6 @@
 {
   "name": "mcservercreator",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Minecraft Server Creator",
   "main": "dist/index.js",
   "bin": {
