@@ -1,7 +1,11 @@
 # MCServerCreator
 A Minecraft serverc creator
 
-# Spigot compatibility
+## 🖐 Using Server Creator
+```bash
+npm 
+``` 
+## Spigot compatibility
 
 - [x] 1.19
 - [x] 1.18.2
