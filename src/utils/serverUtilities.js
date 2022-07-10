@@ -54,7 +54,6 @@ export default class Utilities {
    */
   deleteServer() {
     const msgHandler = new returnMessageHandler();
-    const currentDirectory = process.cwd()
     console.log(msgHandler.Message("Server deleting...", "PROCESSING"));
     readdir(process.cwd(), (err, files) => {
       if (err) throw err;
@@ -65,9 +64,6 @@ export default class Utilities {
         });
       }
     });
-    chdir('..');
-    rmdir(currentDirectory, () => {
-      console.log(msgHandler.Message("Server deleted.", "SUCCESS"));
-    });
+    console.log(msgHandler.Message("Server deleted.", "SUCCESS"));
   }
 }
