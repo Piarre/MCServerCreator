@@ -1,10 +1,16 @@
 # MCServerCreator
 A Minecraft serverc creator
 
-## 🖐 Using Server Creator
+## ⬇ Install Server Creator
 ```bash
-npm 
+npm i mcsrvc
 ``` 
+
+## 🧨 Start
+```bash
+mcsc
+```
+
 ## Spigot compatibility
 
 - [x] 1.19
