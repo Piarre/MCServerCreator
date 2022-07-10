@@ -2,12 +2,11 @@ import { cpSync, existsSync, mkdir, readdir, unlink } from "fs-extra";
 import returnMessageHandler from "./returnMessageHandler";
 import { join, resolve } from 'path';
 import { chdir } from "process";
-import { rmdir } from "fs";
 
 /**
  * @class
  * @author Piarre
- * @version 1.0.0
+ * @version 1.0.3
  * @description Utilities class for tools.
  */
 export default class Utilities {
