@@ -2,16 +2,21 @@
 
 A Minecraft server creator
 
+[![Version npm](https://img.shields.io/npm/v/mcsrvc.svg?logo=npm)](https://www.npmjs.com/package/mcsrvc)
+
 ## ⬇ Install Server Creator
 
 ```bash
 npm i mcsrvc
 ```
 
-## 🧨 Start
+## 🧪 Examples
 
 ```bash
-mcsc
+# Vanilla 1.13
+mcsc -v 1.13
+# Spigot 1.13
+mcsc -v 1.13 -s
 ```
 
 ## 🖐 Use
@@ -31,6 +36,7 @@ mcsc -v <server version> -s -f <folder name>
 -s: * Use Spigot.
 
 * Optional parameters
+Default 
 ```
 
 ## Spigot compatibility
