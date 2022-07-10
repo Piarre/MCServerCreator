@@ -7,6 +7,9 @@ npm i mcsrvc
 ``` 
 
 ## 🧨 Start
+```bash
+mcsc
+```
 
 ## Spigot compatibility
 
