@@ -1,6 +1,6 @@
 import { cpSync, existsSync, mkdir, readdir, unlink } from "fs-extra";
 import returnMessageHandler from "./returnMessageHandler";
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { chdir } from "process";
 import { rmdir } from "fs";
 
@@ -30,7 +30,7 @@ export default class Utilities {
     if (!existsSync(`${process.cwd()}/${folderName}`)) {
       console.log(msgHandler.Message(`Creating ${serverVersion} ${serverType} server in ${folderName}...`, "PROCESSING"));
       await mkdir(`./${folderName}`, () => {
-        cpSync("src/template", `${process.cwd()}/${folderName}`, {
+        cpSync(`${resolve(__dirname)}/../template`, `${process.cwd()}/${folderName}`, {
           recursive: true,
         });
         chdir(`./${folderName}`);
