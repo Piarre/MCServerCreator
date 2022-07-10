@@ -13,7 +13,7 @@ import { rmdir } from "fs";
 export default class Utilities {
   async getJar(URL) {
     const execa = await require("execa");
-    await execa("curl", ["-k", URL, "-o server.jar"], { cwd: process.cwd() });
+    await execa("curl", ["-k", URL, "-o", "server.jar"], { cwd: process.cwd() });
   }
 
   /**
