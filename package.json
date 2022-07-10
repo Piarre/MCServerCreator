@@ -1,5 +1,5 @@
 {
-  "name": "mcsc",
+  "name": "mcsrvc",
   "version": "1.0.0",
   "description": "Minecraft Server Creator",
   "bin": {
