@@ -1,14 +1,36 @@
 # MCServerCreator
-A Minecraft serverc creator
+
+A Minecraft server creator
 
 ## ⬇ Install Server Creator
+
 ```bash
 npm i mcsrvc
-``` 
+```
 
 ## 🧨 Start
+
 ```bash
 mcsc
+```
+
+## 🖐 Use
+
+```bash
+# Vanilla
+mcsc -v <server version> -f <folder name>
+# Spigot
+mcsc -v <server version> -s -f <folder name>
+```
+
+## ⚙️ Options
+
+```bash
+-v <server version>: Set server version.
+-f <folder name>: * Set folder name.
+-s: * Use Spigot.
+
+* Optional parameters
 ```
 
 ## Spigot compatibility
@@ -62,5 +84,6 @@ mcsc
 - [x] 1.8
 - [x] 1.7.10
 
-# 🔐 License 
+# 🔐 License
+
 MIT
