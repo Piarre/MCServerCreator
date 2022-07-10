@@ -12,7 +12,7 @@ import { versions } from "./constants/minecraft";
 import { yargsOptions } from "./constants/yArgs";
 /**
  * @author Piarre
- * @version 1.0.0
+ * @version 1.0.3
  * @description Main function for the tools.
  */
 (async () => {
