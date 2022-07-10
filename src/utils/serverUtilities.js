@@ -1,6 +1,6 @@
 import { cpSync, existsSync, mkdir, readdir, unlink } from "fs-extra";
 import returnMessageHandler from "./returnMessageHandler";
-import { join, dirname } from 'path';
+import { join } from 'path';
 import { chdir } from "process";
 import { rmdir } from "fs";
 
@@ -33,7 +33,7 @@ export default class Utilities {
         cpSync("src/template", `${process.cwd()}/${folderName}`, {
           recursive: true,
         });
-        process.chdir(`./${folderName}`);
+        chdir(`./${folderName}`);
         callback();
       });
       console.log(msgHandler.Message(`Server ${serverVersion} ${serverType} created into ${folderName}.`, "SUCCESS"));
@@ -54,7 +54,7 @@ export default class Utilities {
    */
   deleteServer() {
     const msgHandler = new returnMessageHandler();
-    const currentDirectory = dirname(process.cwd());
+    const currentDirectory = process.cwd()
     console.log(msgHandler.Message("Server deleting...", "PROCESSING"));
     readdir(process.cwd(), (err, files) => {
       if (err) throw err;
