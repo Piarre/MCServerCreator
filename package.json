@@ -1,10 +1,9 @@
 {
-  "name": "mcservercreator",
+  "name": "mcsc",
   "version": "1.0.0",
   "description": "Minecraft Server Creator",
-  "main": "dist/index.js",
   "bin": {
-    "mcsc": "bin/entry"
+    "mcsc": "bin/mcsc"
   },
   "publishConfig": {
     "access": "public",
