@@ -1,6 +1,6 @@
 import { cpSync, existsSync, mkdir, readdir, unlink } from "fs-extra";
 import returnMessageHandler from "./returnMessageHandler";
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { chdir } from "process";
 
 /**
@@ -12,7 +12,7 @@ import { chdir } from "process";
 export default class Utilities {
   async getJar(URL) {
     const execa = await require("execa");
-    await execa("curl", ["-k", URL, "-o server.jar"], { cwd: process.cwd() });
+    await execa("curl", ["-k", URL, "-o", "server.jar"], { cwd: process.cwd() });
   }
 
   /**
@@ -29,7 +29,7 @@ export default class Utilities {
     if (!existsSync(`${process.cwd()}/${folderName}`)) {
       console.log(msgHandler.Message(`Creating ${serverVersion} ${serverType} server in ${folderName}...`, "PROCESSING"));
       await mkdir(`./${folderName}`, () => {
-        cpSync("src/template", `${process.cwd()}/${folderName}`, {
+        cpSync(`${resolve(__dirname)}/../template`, `${process.cwd()}/${folderName}`, {
           recursive: true,
         });
         chdir(`./${folderName}`);
@@ -53,7 +53,6 @@ export default class Utilities {
    */
   deleteServer() {
     const msgHandler = new returnMessageHandler();
-    const currentDirectory = process.cwd()
     console.log(msgHandler.Message("Server deleting...", "PROCESSING"));
     readdir(process.cwd(), (err, files) => {
       if (err) throw err;
@@ -64,9 +63,6 @@ export default class Utilities {
         });
       }
     });
-    chdir('..');
-    rmdir(currentDirectory, () => {
-      console.log(msgHandler.Message("Server deleted.", "SUCCESS"));
-    });
+    console.log(msgHandler.Message("Server deleted.", "SUCCESS"));
   }
 }
