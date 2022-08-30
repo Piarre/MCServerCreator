@@ -1,7 +1,8 @@
 {
-  "name": "mcsrvc",
-  "version": "1.0.3",
-  "description": "Minecraft Server Creator",
+  "name": "mcservercreator",
+  "author": "Piarrre",
+  "version": "1.0.4",
+  "description": "A Minecraft server creator",
   "bin": {
     "mcsc": "bin/mcsc"
   },
@@ -19,7 +20,6 @@
     "Spigot",
     "CLI"
   ],
-  "author": "Piarre",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Piarre/MCServerCreator/issues"
