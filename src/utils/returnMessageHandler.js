@@ -17,16 +17,18 @@ export default class returnMessageHandler {
 
   Message(message, type) {
     if (!(type == "ERROR" || "SUCCESS" || "WARNING" || "PROCESSING"))
-      return new TypeError("Only ERROR, SUCCES, WARNING and PROCESSING types are allowed.");
+      return new TypeError(
+        "Only ERROR, SUCCES, WARNING and PROCESSING types are allowed."
+      );
     switch (type) {
       case "ERROR":
-        return `\x1b[41mERROR\x1b[0m ${message}`;
+        return console.log(`\x1b[41mERROR\x1b[0m ${message}`);
       case "SUCCESS":
-        return `\x1b[42mSUCCESS\x1b[0m ${message}`;
+        return console.log(`\x1b[42mSUCCESS\x1b[0m ${message}`);
       case "WARNING":
-        return `\x1b[43mWARNING\x1b[0m ${message}`;
-        case "PROCESSING":
-        return `\x1b[44mPROCESSING\x1b[0m ${message}`;
+        return console.log(`\x1b[43mWARNING\x1b[0m ${message}`);
+      case "PROCESSING":
+        return console.log(`\x1b[44mPROCESSING\x1b[0m ${message}`);
       default:
         break;
     }
