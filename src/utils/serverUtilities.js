@@ -1,6 +1,6 @@
 import { cpSync, existsSync, mkdir, readdir, unlink } from "fs-extra";
 import returnMessageHandler from "./returnMessageHandler";
-import { join, resolve } from 'path';
+import { join, resolve } from "path";
 import { chdir } from "process";
 
 /**
@@ -36,11 +36,9 @@ export default class Utilities {
   async createServer(folderName, serverVersion, serverType, callback) {
     const msgHandler = new returnMessageHandler();
     if (!existsSync(`${process.cwd()}/${folderName}`)) {
-      console.log(
-        msgHandler.Message(
-          `Creating ${serverVersion} ${serverType} server in ${folderName}...`,
-          "PROCESSING"
-        )
+      msgHandler.Message(
+        `Creating ${serverVersion} ${serverType} server in ${folderName}...`,
+        "PROCESSING"
       );
       await mkdir(`./${folderName}`, () => {
         cpSync(
@@ -53,18 +51,15 @@ export default class Utilities {
         chdir(`./${folderName}`);
         callback();
       });
-      console.log(
-        msgHandler.Message(
-          `Server ${serverVersion} ${serverType} created into ${folderName}.`,
-          "SUCCESS"
-        )
+
+      msgHandler.Message(
+        `Server ${serverVersion} ${serverType} created into ${folderName}.`,
+        "SUCCESS"
       );
     } else {
-      return console.log(
-        msgHandler.Message(
-          "A folder with the same name already exists.",
-          "ERROR"
-        )
+      return msgHandler.Message(
+        "A folder with the same name already exists.",
+        "ERROR"
       );
     }
   }
@@ -78,7 +73,7 @@ export default class Utilities {
    */
   deleteServer() {
     const msgHandler = new returnMessageHandler();
-    console.log(msgHandler.Message("Server deleting...", "PROCESSING"));
+    msgHandler.Message("Server deleting...", "PROCESSING");
     readdir(process.cwd(), (err, files) => {
       if (err) throw err;
 
@@ -88,6 +83,6 @@ export default class Utilities {
         });
       }
     });
-    console.log(msgHandler.Message("Server deleted.", "SUCCESS"));
+    msgHandler.Message("Server deleted.", "SUCCESS");
   }
 }
