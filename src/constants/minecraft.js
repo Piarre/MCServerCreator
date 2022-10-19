@@ -251,4 +251,14 @@ export const versions = {
       "https://launcher.mojang.com/v1/objects/e00c4052dac1d59a1188b2aa9d5a87113aaf1122/server.jar",
     spigot: "https://download.getbukkit.org/spigot/spigot-1.19.jar",
   },
+  "1.19.1": {
+    vanilla:
+      "https://piston-data.mojang.com/v1/objects/8399e1211e95faa421c1507b322dbeae86d604df/server.jar",
+    spigot: "https://download.getbukkit.org/spigot/spigot-1.19.1.jar",
+  },
+  "1.19.2": {
+    vanilla:
+      "https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar",
+    spigot: "https://download.getbukkit.org/spigot/spigot-1.19.2.jar",
+  },
 };
