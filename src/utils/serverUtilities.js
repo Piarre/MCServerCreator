@@ -10,9 +10,18 @@ import { chdir } from "process";
  * @description Utilities class for tools.
  */
 export default class Utilities {
+  /**
+   * @param {string} URL
+   * @async
+   * @author Piarre
+   * @method
+   * @public
+   */
   async getJar(URL) {
     const execa = await require("execa");
-    await execa("curl", ["-k", URL, "-o", "server.jar"], { cwd: process.cwd() });
+    await execa("curl", ["-k", URL, "-o", "server.jar"], {
+      cwd: process.cwd(),
+    });
   }
 
   /**
@@ -27,20 +36,36 @@ export default class Utilities {
   async createServer(folderName, serverVersion, serverType, callback) {
     const msgHandler = new returnMessageHandler();
     if (!existsSync(`${process.cwd()}/${folderName}`)) {
-      console.log(msgHandler.Message(`Creating ${serverVersion} ${serverType} server in ${folderName}...`, "PROCESSING"));
+      console.log(
+        msgHandler.Message(
+          `Creating ${serverVersion} ${serverType} server in ${folderName}...`,
+          "PROCESSING"
+        )
+      );
       await mkdir(`./${folderName}`, () => {
-        cpSync(`${resolve(__dirname)}/../template`, `${process.cwd()}/${folderName}`, {
-          recursive: true,
-        });
+        cpSync(
+          `${resolve(__dirname)}/../template`,
+          `${process.cwd()}/${folderName}`,
+          {
+            recursive: true,
+          }
+        );
         chdir(`./${folderName}`);
         callback();
       });
-      console.log(msgHandler.Message(`Server ${serverVersion} ${serverType} created into ${folderName}.`, "SUCCESS"));
+      console.log(
+        msgHandler.Message(
+          `Server ${serverVersion} ${serverType} created into ${folderName}.`,
+          "SUCCESS"
+        )
+      );
     } else {
-      return console.log(msgHandler.Message(
-        "A folder with the same name already exists.",
-        "ERROR"
-      ));
+      return console.log(
+        msgHandler.Message(
+          "A folder with the same name already exists.",
+          "ERROR"
+        )
+      );
     }
   }
 
