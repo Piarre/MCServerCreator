@@ -1,30 +1,17 @@
 import { cpSync, existsSync, mkdir, readdir, unlink } from "fs-extra";
-import returnMessageHandler from "./returnMessageHandler";
+import { Message } from "./returnMessageHandler";
 import { join, resolve } from 'path';
 import { chdir } from "process";
+import { MessageType } from "./returnMessageHandler";
 
-/**
- * @class
- * @author Piarre
- * @version 1.0.3
- * @description Utilities class for tools.
- */
 export default class Utilities {
-  async getJar(URL) {
+  async getJar(URL: string) {
     const execa = await require("execa");
     await execa("curl", ["-k", URL, "-o", "server.jar"], { cwd: process.cwd() });
   }
 
-  /**
-   * @method
-   * @public
-   * @returns
-   * @author Piarre
-   * @param {string} folderName Name of the server folder.
-   * @param {string} mcversion Minecraft server version.
-   * @param {string} type Type of the server.
-   */
-  async createServer(folderName, serverVersion, serverType, callback) {
+
+  async createServer(folderName: string, serverVersion: string | number, serverType: string, callback: () => {}) {
     const msgHandler = new returnMessageHandler();
     if (!existsSync(`${process.cwd()}/${folderName}`)) {
       console.log(msgHandler.Message(`Creating ${serverVersion} ${serverType} server in ${folderName}...`, "PROCESSING"));
@@ -44,15 +31,9 @@ export default class Utilities {
     }
   }
 
-  /**
-   * @method
-   * @public
-   * @returns
-   * @author Piarre
-   * @description Delete the server folder.
-   */
   deleteServer() {
-    const msgHandler = new returnMessageHandler();
+    
+    Message("Server deleting...", MessageType.PROCESSING)
     console.log(msgHandler.Message("Server deleting...", "PROCESSING"));
     readdir(process.cwd(), (err, files) => {
       if (err) throw err;

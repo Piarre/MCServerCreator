@@ -1,20 +1,11 @@
-// @ts-nocheck
-
-// Modules
 import yargs from "yargs";
 
-// Classes
 import Utilities from "./utils/serverUtilities.js";
 import returnMessageHandler from "./utils/returnMessageHandler";
 
-// Constants
 import { versions } from "./constants/minecraft";
 import { yargsOptions } from "./constants/yArgs";
-/**
- * @author Piarre
- * @version 1.0.3
- * @description Main function for the tools.
- */
+
 (async () => {
   const startArgs = yargs.options(yargsOptions).argv;
 
