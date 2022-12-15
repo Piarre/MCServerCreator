@@ -7,8 +7,7 @@
     "mcsc": "bin/mcsc"
   },
   "scripts": {
-    "start": "npx tsc",
-    "poststart": "cp -r src/template dist/template && node dist/index.js"
+    "start": "npx tsc && cp -r src/template dist/template && node dist/index.js"
   },
   "publishConfig": {
     "access": "public",
