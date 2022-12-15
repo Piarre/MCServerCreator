@@ -1,10 +1,14 @@
 {
   "name": "mcservercreator",
   "author": "Piarrre",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A Minecraft server creator",
   "bin": {
     "mcsc": "bin/mcsc"
+  },
+  "scripts": {
+    "start": "npx tsc",
+    "poststart": "cp -r src/template dist/template"
   },
   "publishConfig": {
     "access": "public",
@@ -32,6 +36,8 @@
     "inquirer": "^8.1.1",
     "mcservercreator": "^1.0.4",
     "path": "^0.12.7",
+    "tsc": "^2.0.4",
+    "typescript": "^4.9.4",
     "yargs": "^17.5.1"
   },
   "devDependencies": {
