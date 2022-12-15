@@ -37,15 +37,15 @@ import { yargsOptions } from "./constants/yArgs";
   if (!mcversion) {
     yargs.options(yargsOptions).demandCommand().argv;
 
-    return console.log(msgHandler.Message(
-      "Please specify a Minecraft version.",
-      "ERROR"
-    ));
+    return console.log(
+      msgHandler.Message("Please specify a Minecraft version.", "ERROR")
+    );
   }
 
-
   if (!(mcversion in versions))
-    return console.log(msgHandler.Message("Minecraft version not found.", "ERROR"));
+    return console.log(
+      msgHandler.Message("Minecraft version not found.", "ERROR")
+    );
 
   if (mcversion in versions && !spigot) {
     const serverUtils = new Utilities();
@@ -54,10 +54,12 @@ import { yargsOptions } from "./constants/yArgs";
     });
   } else if (mcversion in versions && spigot) {
     if (versions[mcversion].spigot == null) {
-      console.log(msgHandler.Message(
-        `${mcversion} Spigot version is not supported yet.`,
-        "ERROR"
-      ));
+      console.log(
+        msgHandler.Message(
+          `${mcversion} Spigot version is not supported yet.`,
+          "ERROR"
+        )
+      );
     } else {
       const serverUtils = new Utilities();
       await serverUtils.createServer(folderName, mcversion, "Spigot", () => {

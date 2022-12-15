@@ -1,40 +1,50 @@
 import { cpSync, existsSync, mkdir, readdir, unlink } from "fs-extra";
-import { Message } from "./returnMessageHandler";
-import { join, resolve } from 'path';
+import Message from "./returnMessageHandler";
+import { join, resolve } from "path";
 import { chdir } from "process";
 import { MessageType } from "./returnMessageHandler";
 
 export default class Utilities {
   async getJar(URL: string) {
     const execa = await require("execa");
-    await execa("curl", ["-k", URL, "-o", "server.jar"], { cwd: process.cwd() });
+    await execa("curl", ["-k", URL, "-o", "server.jar"], {
+      cwd: process.cwd(),
+    });
   }
 
-
-  async createServer(folderName: string, serverVersion: string | number, serverType: string, callback: () => {}) {
-    const msgHandler = new returnMessageHandler();
+  async createServer(
+    folderName: string,
+    serverVersion: string | number,
+    serverType: string,
+    callback: () => {}
+  ) {
     if (!existsSync(`${process.cwd()}/${folderName}`)) {
-      console.log(msgHandler.Message(`Creating ${serverVersion} ${serverType} server in ${folderName}...`, "PROCESSING"));
+      Message(
+        `Creating ${serverVersion} ${serverType} server in ${folderName}...`,
+        MessageType.PROCESSING
+      );
       await mkdir(`./${folderName}`, () => {
-        cpSync(`${resolve(__dirname)}/../template`, `${process.cwd()}/${folderName}`, {
-          recursive: true,
-        });
+        cpSync(
+          `${resolve(__dirname)}/../template`,
+          `${process.cwd()}/${folderName}`,
+          {
+            recursive: true,
+          }
+        );
         chdir(`./${folderName}`);
         callback();
       });
-      console.log(msgHandler.Message(`Server ${serverVersion} ${serverType} created into ${folderName}.`, "SUCCESS"));
+      Message(
+        `Server ${serverVersion} ${serverType} created into ${folderName}.`,
+        MessageType.SUCCESS
+      );
     } else {
-      return console.log(msgHandler.Message(
-        "A folder with the same name already exists.",
-        "ERROR"
-      ));
+      Message("A folder with the same name already exists.", MessageType.ERROR);
     }
   }
 
   deleteServer() {
-    
-    Message("Server deleting...", MessageType.PROCESSING)
-    console.log(msgHandler.Message("Server deleting...", "PROCESSING"));
+    Message("Server deleting...", MessageType.PROCESSING);
     readdir(process.cwd(), (err, files) => {
       if (err) throw err;
 
@@ -44,6 +54,6 @@ export default class Utilities {
         });
       }
     });
-    console.log(msgHandler.Message("Server deleted.", "SUCCESS"));
+    Message("Server deleted.", MessageType.SUCCESS);
   }
 }
