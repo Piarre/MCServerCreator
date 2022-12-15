@@ -1,13 +1,14 @@
 {
-  "name": "mcsrvc",
-  "version": "1.0.3",
-  "description": "Minecraft Server Creator",
+  "name": "mcservercreator",
+  "author": "Piarrre",
+  "version": "1.0.6",
+  "description": "A Minecraft server creator",
   "bin": {
     "mcsc": "bin/mcsc"
   },
   "scripts": {
-    "build": "cp -r src/template dist/template && npx tsc",
-    "install": "yarn"
+    "start": "npx tsc",
+    "poststart": "cp -r src/template dist/template"
   },
   "publishConfig": {
     "access": "public",
@@ -23,7 +24,6 @@
     "Spigot",
     "CLI"
   ],
-  "author": "Piarre",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Piarre/MCServerCreator/issues"
@@ -34,7 +34,7 @@
     "execa": "^5.1.1",
     "fs-extra": "^10.1.0",
     "inquirer": "^8.1.1",
-    "mcservercreator": "^1.0.1",
+    "mcservercreator": "^1.0.4",
     "path": "^0.12.7",
     "tsc": "^2.0.4",
     "typescript": "^4.9.4",
