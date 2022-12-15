@@ -1,11 +1,9 @@
 import yargs from "yargs";
-
-import Utilities from "./utils/serverUtilities.js";
 import { MessageType } from "./utils/returnMessageHandler";
-
 import Message from "./utils/returnMessageHandler";
-import { versions } from "./constants/minecraft.js";
-import { yargsOptions } from "./constants/yArgs.js";
+import { yargsOptions } from "./constants/yArgs";
+import Utilities from "./utils/serverUtilities";
+import { versions } from "./constants/minecraft";
 
 (async () => {
   const startArgs = yargs.options(yargsOptions).argv;
@@ -20,7 +18,7 @@ import { yargsOptions } from "./constants/yArgs.js";
         {
           type: "confirm",
           name: "deleteConfirm",
-          message: "\x1b[31mAre you sure you want to reset the server ?",
+          message: "\x1b[31mAre you sure you want to delete the server ?",
           default: false,
         },
       ])

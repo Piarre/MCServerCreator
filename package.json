@@ -6,7 +6,8 @@
     "mcsc": "bin/mcsc"
   },
   "scripts": {
-    "build": "cp -r src/template dist/template && npx tsc"
+    "build": "cp -r src/template dist/template && npx tsc",
+    "install": "yarn"
   },
   "publishConfig": {
     "access": "public",
