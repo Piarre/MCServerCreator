@@ -1,5 +1,6 @@
-# MCServerCreator
+**PRE-RELEASE**
 
+# MCServerCreator
 A Minecraft server creator
 
 [![Version npm](https://img.shields.io/npm/v/mcservercreator.svg?logo=npm)](https://www.npmjs.com/package/MCServerCreator)
