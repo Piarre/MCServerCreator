@@ -8,28 +8,7 @@ import { versions } from "./constants/minecraft";
 (async () => {
   const startArgs = yargs.options(yargsOptions).argv;
 
-  const { mcversion, spigot, sdelete, folderName } = startArgs as any;
-
-  if (sdelete) {
-    const inquirer = await require("inquirer");
-
-    await inquirer
-      .prompt([
-        {
-          type: "confirm",
-          name: "deleteConfirm",
-          message: "\x1b[31mAre you sure you want to delete the server ?",
-          default: false,
-        },
-      ])
-      .then((answer: any) => {
-        if (answer.deleteConfirm) {
-          new Utilities().deleteServer();
-        }
-      });
-
-    return;
-  }
+  const { mcversion, spigot, folderName } = startArgs as any;
 
   if (!mcversion) {
     yargs.options(yargsOptions).demandCommand().argv;

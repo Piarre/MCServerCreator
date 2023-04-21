@@ -1,4 +1,4 @@
-name: Node.js Package
+name: DICLI
 
 on:
   release:
@@ -6,25 +6,28 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: mcsc-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: 12
       - run: npm ci
       - run: npm test
 
-  publish-npm:
+  publish-gpr:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: mcsc-latest
+    permissions:
+      packages: write
+      contents: read
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
-      - run: yarn
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+      - run: npm ci
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

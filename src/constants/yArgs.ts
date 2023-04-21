@@ -11,12 +11,6 @@ export const yargsOptions: any = {
     alias: "s",
     description: "If you want to use spigot server.",
   },
-  sdelete: {
-    type: "con",
-    demandOption: false,
-    alias: "d",
-    description: "Delete the server.",
-  },
   folderName: {
     type: "string",
     demandOption: false,

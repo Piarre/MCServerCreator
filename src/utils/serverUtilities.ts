@@ -25,7 +25,7 @@ export default class Utilities {
       );
       await mkdir(`./${folderName}`, () => {
         cpSync(
-          `${resolve(__dirname)}/../template`,
+          `${resolve(__dirname)}/../template/`,
           `${process.cwd()}/${folderName}`,
           {
             recursive: true,
@@ -43,17 +43,17 @@ export default class Utilities {
     }
   }
 
-  deleteServer() {
-    Message("Server deleting...", MessageType.PROCESSING);
-    readdir(process.cwd(), (err, files) => {
-      if (err) throw err;
+  // deleteServer() {
+  //   Message("Server deleting...", MessageType.PROCESSING);
+  //   readdir(process.cwd(), (err, files) => {
+  //     if (err) throw err;
 
-      for (const file of files) {
-        unlink(join(process.cwd(), file), (err) => {
-          if (err) throw err;
-        });
-      }
-    });
-    Message("Server deleted.", MessageType.SUCCESS);
-  }
+  //     for (const file of files) {
+  //       unlink(join(process.cwd(), file), (err) => {
+  //         if (err) throw err;
+  //       });
+  //     }
+  //   });
+  //   Message("Server deleted.", MessageType.SUCCESS);
+  // }
 }
