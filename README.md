@@ -36,9 +36,10 @@ mcsc -v <server version> -s -f <folder name>
 -f <folder name>: * Set folder name.
 -s: * Use Spigot.
 
-* Optional parameters
+
 Default 
 ```
+****Optional parameters***
 
 ## Spigot versions that are not available
 
