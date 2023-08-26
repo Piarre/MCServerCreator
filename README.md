@@ -3,7 +3,7 @@
 # MCServerCreator
 A Minecraft server creator
 
-[![Version npm](https://img.shields.io/npm/v/mcservercreator.svg?logo=npm)](https://www.npmjs.com/package/MCServerCreator)
+[![Version npm](https://img.shields.io/npm/v/@piarre/mcsc.svg?logo=npm)](https://www.npmjs.com/package/@piarre/mcsc)
 
 ## ⬇ Install Server Creator
 
