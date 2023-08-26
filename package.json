@@ -1,7 +1,7 @@
 {
-  "name": "mcsc",
+  "name": "@piarre/mcsc",
   "author": "Piarrre",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "description": "A Minecraft server creator",
   "bin": {
     "mcsc": "bin/mcsc"
