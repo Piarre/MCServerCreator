@@ -251,4 +251,34 @@ export const versions: any = {
       "https://launcher.mojang.com/v1/objects/e00c4052dac1d59a1188b2aa9d5a87113aaf1122/server.jar",
     spigot: "https://download.getbukkit.org/spigot/spigot-1.19.jar",
   },
+  "1.19.1": {
+    vanilla:
+      "https://piston-data.mojang.com/v1/objects/8399e1211e95faa421c1507b322dbeae86d604df/server.jar",
+    spigot: "https://download.getbukkit.org/spigot/spigot-1.19.1.jar",
+  },
+  "1.19.2": {
+    vanilla:
+      "https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar",
+    spigot: "https://download.getbukkit.org/spigot/spigot-1.19.2.jar",
+  },
+  "1.19.3": {
+    vanilla:
+      "https://piston-data.mojang.com/v1/objects/c9df48efed58511cdd0213c56b9013a7b5c9ac1f/server.jar",
+    spigot: "https://download.getbukkit.org/spigot/spigot-1.19.3.jar",
+  },
+  "1.19.4": {
+    vanilla:
+      "https://piston-data.mojang.com/v1/objects/8f3112a1049751cc472ec13e397eade5336ca7ae/server.jar",
+    spigot: "https://download.getbukkit.org/spigot/spigot-1.19.4.jar",
+  },
+  "1.20": {
+    vanilla:
+      "https://piston-data.mojang.com/v1/objects/6890ac51068a05e3fcc4158478247e5a5e47bcac/server.jar",
+    spigot: null,
+  },
+  "1.20.1": {
+    vanilla:
+      "https://piston-data.mojang.com/v1/objects/84194a2f286ef7c14ed7ce0090dba59902951553/server.jar",
+    spigot: "https://download.getbukkit.org/spigot/spigot-1.20.1.jar",
+  },
 };

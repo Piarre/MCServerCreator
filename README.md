@@ -42,6 +42,7 @@ Default
 
 ## Spigot versions that are not available
 
+- 1.20
 - 1.16
 - 1.10.1
 - 1.9.3
